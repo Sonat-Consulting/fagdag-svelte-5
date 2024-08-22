@@ -71,7 +71,11 @@ You can preview the production build with `npm run preview`.
 
 ---
 
-## Opprette nytt prosjekt: "fagdag-svelte-5"
+# <span style="color:yellow">Opprette nytt prosjekt: "fagdag-svelte-5" </span>
+
+Det følgende beskriver i sin helhet hvordan denne malen er opprettet.
+Kun versjoner i npm-pakker skal avvike.
+Hensikten med prosjektet er å spare tid på å sette opp et nytt prosjekt.
 
 Det er selvsagt flott å opprette et nytt prosjekt med npm create vite@latest,
 men siden vi skal lage et Svelte 5 prosjekt er det mer naturlig å kjøre:

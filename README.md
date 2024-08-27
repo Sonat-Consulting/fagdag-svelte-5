@@ -55,6 +55,7 @@ You can preview the production build with `npm run preview`.
     1. [Opprett filer for i18n i `src/lib`](#opprett-filer-for-i18n-i-srclib)
     2. [Initiere i18n i applikasjonen](#initiere-i18n-i-applikasjonen)
 4. [Layout (+layout.svelte)](#layout-layoutsvelte)
+5. [daisyUI og @tailwindcss/typography](#daisyui-og-tailwindcsstypography)
 
 ---
 

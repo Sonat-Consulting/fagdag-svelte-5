@@ -39,17 +39,20 @@ You can preview the production build with `npm run preview`.
 
 ---
 
+# Nytt prosjekt med Svelte 5
 ---
 
-# Nytt prosjekt med Svelte 5
 
-[//]: # '#### *Vite - Typescript - tailwindcss - daisyUI - i18n*'
-[//]: # '<span style="color:yellow">Vite: https://vitejs.dev/guide/</span>'
-[//]: # '---'
+#### *Vite - Typescript - tailwindcss - daisyUI - i18n*
+
+
 
 ### Innhold
 
-1. [Opprette nytt prosjekt: “fagdag-svelte-5”](#Opprette-nytt-prosjekt-fagdag-svelte-5)
+1. [Opprette nytt prosjekt: “fagdag-svelte-5”](#opprette-nytt-prosjekt-fagdag-svelte-5)
+   1. [Prettier](#prettier)
+   2. [Legg til extensions i svelte.config.js](#legg-til-extensions-i-svelteconfigjs)
+   3. [vite.config.js](#viteconfigjs)
 2. [Legg til tailwindcss](#legg-til-tailwindcss)
 3. [Legg til i18n](#legg-til-i18n)
     1. [Opprett filer for i18n i `src/lib`](#opprett-filer-for-i18n-i-srclib)
@@ -59,7 +62,7 @@ You can preview the production build with `npm run preview`.
 
 ---
 
-### Ressurser
+### Ressurser benyttet under installasjonen
 
 - Vite: https://vitejs.dev/guide/
 - Typescript: https://www.typescriptlang.org/docs/handbook/intro.html
@@ -68,11 +71,13 @@ You can preview the production build with `npm run preview`.
 - daisyUI: https://daisyui.com/docs/install/
 - theme-change: https://www.npmjs.com/package/theme-change
 - svelte-i18n-svelte5: https://www.npmjs.com/package/svelte-i18n-svelte5
+### Annet
 - nvm install guide: https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating
+- shadcn-svelte: https://www.shadcn-svelte.com/
 
 ---
 
-# <span style="color:yellow">Opprette nytt prosjekt: "fagdag-svelte-5" </span>
+# Opprette nytt prosjekt: "fagdag-svelte-5"
 
 Det følgende beskriver i sin helhet hvordan denne malen er opprettet.
 Kun versjoner i npm-pakker skal avvike.
@@ -126,28 +131,76 @@ Stuck? Visit us at https://svelte.dev/chat
 
 - Gjør “Next steps” 1 og 2 og åpne prosjektet i ønsket editor.
 - Oppdater alle pakker
+### Prettier
 - Endre `.pretier.rc` etter egne preferanser, typisk:
 
-  ```typescript
+  ```json
   {
-      "semi": false,
-      "trailingComma": "all",
-      "singleQuote": true,
-      "printWidth": 120,
-      "tabWidth": 2,
-      "endOfLine": "auto",
-      "useTabs": true,
-      "plugins": ["prettier-plugin-svelte"],
-      "overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
+    "semi": false,
+    "trailingComma": "all",
+    "singleQuote": true,
+    "printWidth": 120,
+    "tabWidth": 2,
+    "endOfLine": "auto",
+    "useTabs": true,
+    "plugins": ["prettier-plugin-svelte"],
+    "overrides": [{ "files": "*.svelte", "options": { "parser": "svelte" } }]
   }
+  
   ```
+### vite.config.js
+- Port 5173 er default port for Vite. Denne kan endres i `vite.config.js`
+```javascript
+import { sveltekit } from '@sveltejs/kit/vite'
+import { defineConfig } from 'vite'
 
-- Legg til extensions i svelte.config.js
-  ```javascript
-  ...
+export default defineConfig({
+  plugins: [sveltekit()],
+  server: {
+    port: 5173,
+    hmr: {
+      overlay: false,
+    },
+  },
+  build:{
+    sourcemap: false,
+    chunkSizeWarningLimit: 500,
+  },
+  resolve: {
+    preserveSymlinks: false,
+  },
+})  
+```
+### _Fra chatgpt_
+`preserveSymlinks` is an option related to how the development server (e.g., Vite) resolves modules that are symlinked (linked using symbolic links).
+- preserveSymlinks: false:
+  - When set to false, Vite resolves symlinked modules to their real paths. This means that if you have a symlink in your node_modules or elsewhere, Vite will resolve it to the original file location.
+  - This is the default behavior in many bundlers and is usually preferred because it ensures that there are no duplicate instances of modules. For instance, if two different parts of your application rely on the same symlinked module, they will share the same instance, preventing issues like multiple versions of React being loaded.
+- When might you set it to true?
+  - You might set preserveSymlinks: true if you specifically want to preserve the symlink paths. This could be useful in monorepos or certain development setups where you want to maintain the symlink structure for specific reasons.
+
+### Legg til extensions i svelte.config.js
+```javascript
+import adapter from '@sveltejs/adapter-auto'
+import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
+
+/** @type {import('@sveltejs/kit').Config} */
+const config = {
   extensions: ['.svelte', '.svelte.ts'],
-  ...
-  ```
+  // Consult https://kit.svelte.dev/docs/integrations#preprocessors
+  // for more information about preprocessors
+  preprocess: vitePreprocess(),
+
+  kit: {
+    // adapter-auto only supports some environments, see https://kit.svelte.dev/docs/adapter-auto for a list.
+    // If your environment is not supported, or you settled on a specific environment, switch out the adapter.
+    // See https://kit.svelte.dev/docs/adapters for more information about adapters.
+    adapter: adapter(),
+  },
+}
+
+export default config
+```
 
 ## Legg til tailwindcss
 
@@ -155,17 +208,17 @@ Stuck? Visit us at https://svelte.dev/chat
   ```bash
   npm install -D tailwindcss postcss autoprefixer
   ```
-- Legg til tailwind.config.js og postcss.config.js i prosjektet
+- Denne commandoen legger til  `tailwind.config.js` og `postcss.config.js` i prosjektet
   ```bash
   npx tailwindcss init -p
   ```
-- (Nå kunne man oppdatert `tailwind.config.js`, men det kommer mer senere med eksempelkode)
-- Legg til `src/app.css` og legg til tailwindcss i app.css
-  ```css
-  @tailwind base;
-  @tailwind components;
-  @tailwind utilities;
-  ```
+- (Nå kunne vi oppdatert `tailwind.config.js`, men det eksempelkode lengre nede)
+  - Legg til `src/app.css` og legg til tailwindcss i app.css
+```css
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+```
 
 ## Legg til i18n
 
@@ -174,7 +227,7 @@ _(svelte-i18n-svelte5)_
 Pakken `svelte-i18n-svelte5` ser ut til å være en branch av npm i `svelte-i18n`, som ikke støtter svelte 5, men vi installerer den likevel…
 
 ```bash
-npm i svelte-i18n-svelte5
+  npm i svelte-i18n-svelte5
 ```
 
 ### Opprett filer for i18n i `src/lib`

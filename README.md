@@ -1,6 +1,7 @@
 # create-svelte
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Everything you need to build a Svelte project, powered by [
+`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
 
 ## Creating a project
 
@@ -16,7 +17,8 @@ npm create svelte@latest my-app
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a
+development server:
 
 ```bash
 npm run dev
@@ -35,28 +37,26 @@ npm run build
 
 You can preview the production build with `npm run preview`.
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target
+> environment.
 
 ---
 
 # Nytt prosjekt med Svelte 5
 ---
 
-
 #### *Vite - Typescript - tailwindcss - daisyUI - i18n*
-
-
 
 ### Innhold
 
 1. [Opprette nytt prosjekt: “fagdag-svelte-5”](#opprette-nytt-prosjekt-fagdag-svelte-5)
-   1. [Prettier](#prettier)
-   2. [Legg til extensions i svelte.config.js](#legg-til-extensions-i-svelteconfigjs)
-   3. [vite.config.js](#viteconfigjs)
+1. [Prettier](#prettier)
+2. [Legg til extensions i svelte.config.js](#legg-til-extensions-i-svelteconfigjs)
+3. [vite.config.js](#viteconfigjs)
 2. [Legg til tailwindcss](#legg-til-tailwindcss)
 3. [Legg til i18n](#legg-til-i18n)
-    1. [Opprett filer for i18n i `src/lib`](#opprett-filer-for-i18n-i-srclib)
-    2. [Initiere i18n i applikasjonen](#initiere-i18n-i-applikasjonen)
+1. [Opprett filer for i18n i `src/lib`](#opprett-filer-for-i18n-i-srclib)
+2. [Initiere i18n i applikasjonen](#initiere-i18n-i-applikasjonen)
 4. [Layout (+layout.svelte)](#layout-layoutsvelte)
 5. [daisyUI og @tailwindcss/typography](#daisyui-og-tailwindcsstypography)
 
@@ -71,9 +71,16 @@ You can preview the production build with `npm run preview`.
 - daisyUI: https://daisyui.com/docs/install/
 - theme-change: https://www.npmjs.com/package/theme-change
 - svelte-i18n-svelte5: https://www.npmjs.com/package/svelte-i18n-svelte5
+
 ### Annet
+
 - nvm install guide: https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating
 - shadcn-svelte: https://www.shadcn-svelte.com/
+- Runes: https://svelte-5-preview.vercel.app/docs/runes
+- Svelte 5 Preview editor: https://svelte-5-preview.vercel.app/
+- The Svelte 5 Guide On Runes And Universal Reactivity: https://www.youtube.com/watch?v=tErKyuUTzsM
+- Prismic: Svelte talks spilleliste: https://www.youtube.com/playlist?list=PLUVZjQltoA3yEj6bfKjicBOwCaJJU10rw
+- Svelte (4) navbar: https://svelte.dev/repl/03f0be0c4dc54eb4af5a168f644f5c31?version=3.19.1
 
 ---
 
@@ -131,7 +138,9 @@ Stuck? Visit us at https://svelte.dev/chat
 
 - Gjør “Next steps” 1 og 2 og åpne prosjektet i ønsket editor.
 - Oppdater alle pakker
+
 ### Prettier
+
 - Endre `.pretier.rc` etter egne preferanser, typisk:
 
   ```json
@@ -148,38 +157,51 @@ Stuck? Visit us at https://svelte.dev/chat
   }
   
   ```
+
 ### vite.config.js
+
 - Port 5173 er default port for Vite. Denne kan endres i `vite.config.js`
+
 ```javascript
 import { sveltekit } from '@sveltejs/kit/vite'
 import { defineConfig } from 'vite'
 
 export default defineConfig({
-  plugins: [sveltekit()],
-  server: {
-    port: 5173,
-    hmr: {
-      overlay: false,
-    },
-  },
-  build:{
-    sourcemap: false,
-    chunkSizeWarningLimit: 500,
-  },
-  resolve: {
-    preserveSymlinks: false,
-  },
+	plugins: [sveltekit()],
+	server: {
+		port: 5173,
+		hmr: {
+			overlay: false,
+		},
+	},
+	build: {
+		sourcemap: false,
+		chunkSizeWarningLimit: 500,
+	},
+	resolve: {
+		preserveSymlinks: false,
+	},
 })  
 ```
+
 ### _Fra chatgpt_
-`preserveSymlinks` is an option related to how the development server (e.g., Vite) resolves modules that are symlinked (linked using symbolic links).
+
+`preserveSymlinks` is an option related to how the development server (e.g., Vite) resolves modules that are symlinked (
+linked using symbolic links).
+
 - preserveSymlinks: false:
-  - When set to false, Vite resolves symlinked modules to their real paths. This means that if you have a symlink in your node_modules or elsewhere, Vite will resolve it to the original file location.
-  - This is the default behavior in many bundlers and is usually preferred because it ensures that there are no duplicate instances of modules. For instance, if two different parts of your application rely on the same symlinked module, they will share the same instance, preventing issues like multiple versions of React being loaded.
+    - When set to false, Vite resolves symlinked modules to their real paths. This means that if you have a symlink in
+      your node_modules or elsewhere, Vite will resolve it to the original file location.
+    - This is the default behavior in many bundlers and is usually preferred because it ensures that there are no
+      duplicate instances of modules. For instance, if two different parts of your application rely on the same
+      symlinked module, they will share the same instance, preventing issues like multiple versions of React being
+      loaded.
 - When might you set it to true?
-  - You might set preserveSymlinks: true if you specifically want to preserve the symlink paths. This could be useful in monorepos or certain development setups where you want to maintain the symlink structure for specific reasons.
+    - You might set preserveSymlinks: true if you specifically want to preserve the symlink paths. This could be useful
+      in monorepos or certain development setups where you want to maintain the symlink structure for specific reasons.
 
 ### Legg til extensions i svelte.config.js
+
 ```javascript
 import adapter from '@sveltejs/adapter-auto'
 import { vitePreprocess } from '@sveltejs/vite-plugin-svelte'
@@ -213,7 +235,8 @@ export default config
   npx tailwindcss init -p
   ```
 - (Nå kunne vi oppdatert `tailwind.config.js`, men det eksempelkode lengre nede)
-  - Legg til `src/app.css` og legg til tailwindcss i app.css
+    - Legg til `src/app.css` og legg til tailwindcss i app.css
+
 ```css
 @tailwind base;
 @tailwind components;
@@ -224,7 +247,8 @@ export default config
 
 _(svelte-i18n-svelte5)_
 
-Pakken `svelte-i18n-svelte5` ser ut til å være en branch av npm i `svelte-i18n`, som ikke støtter svelte 5, men vi installerer den likevel…
+Pakken `svelte-i18n-svelte5` ser ut til å være en branch av npm i `svelte-i18n`, som ikke støtter svelte 5, men vi
+installerer den likevel…
 
 ```bash
   npm i svelte-i18n-svelte5
@@ -301,7 +325,8 @@ Siden vi har språk ønsker vi at appen skal starte i http://localhost:5173/no.
 Følgende skal oppfylles:
 
 - http://localhost:5173 skal sende brukeren til http://localhost:5173/no der`no` er default språk.
-- http://localhost:5173/`<hva som helst som ikke er i listen over språk>`/ skal sende brukeren til http://localhost:5173/no der`no` er default språk.
+- http://localhost:5173/`<hva som helst som ikke er i listen over språk>`/ skal sende brukeren
+  til http://localhost:5173/no der`no` er default språk.
 - http://localhost:5173/no skal bruke norsk språk.
 - http://localhost:5173/en skal bruke engelsk språk.
 
@@ -370,7 +395,8 @@ header, footer sidebar og sier hvor hvovedsiden skal rendres.
 Hovedsiden er i dette eksempelet den første `+page.svelte` der vi har bestemt at
 applikasjonen skal starte, altså i `src/routes/[lang/]`
 
-- Opprett `src/routes/+layout.svelte`. I sin enkleste form ser den ut som vist under. Vi velger å importere app.css her, men den kunne også ligget i en annen `+layout.server`. Nå sikrer vi at `app.css` gjelder for alle undersider.
+- Opprett `src/routes/+layout.svelte`. I sin enkleste form ser den ut som vist under. Vi velger å importere app.css her,
+  men den kunne også ligget i en annen `+layout.server`. Nå sikrer vi at `app.css` gjelder for alle undersider.
   ```sveltehtml
   <script>
     import '../app.css'

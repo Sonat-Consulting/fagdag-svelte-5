@@ -3,3 +3,11 @@ README.md
 package-lock.json
 pnpm-lock.yaml
 yarn.lock
+### Svelte template
+# gitignore template for the SvelteKit, frontend web component framework
+# website: https://kit.svelte.dev/
+
+.svelte-kit/
+package
+
+src/b/*

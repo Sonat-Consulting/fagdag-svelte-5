@@ -50,13 +50,13 @@ You can preview the production build with `npm run preview`.
 ### Innhold
 
 1. [Opprette nytt prosjekt: “fagdag-svelte-5”](#opprette-nytt-prosjekt-fagdag-svelte-5)
-   1. [Prettier](#prettier)
-   2. [Legg til extensions i svelte.config.js](#legg-til-extensions-i-svelteconfigjs)
-   3. [vite.config.js](#viteconfigjs)
+  1. [Prettier](#prettier)
+  2. [Legg til extensions i svelte.config.js](#legg-til-extensions-i-svelteconfigjs)
+  3. [vite.config.js](#viteconfigjs)
 2. [Legg til tailwindcss](#legg-til-tailwindcss)
 3. [Legg til i18n](#legg-til-i18n)
-    1. [Opprett filer for i18n i `src/lib`](#opprett-filer-for-i18n-i-srclib)
-    2. [Initiere i18n i applikasjonen](#initiere-i18n-i-applikasjonen)
+  1. [Opprett filer for i18n i `src/lib`](#opprett-filer-for-i18n-i-srclib)
+  2. [Initiere i18n i applikasjonen](#initiere-i18n-i-applikasjonen)
 4. [Layout (+layout.svelte)](#layout-layoutsvelte)
 5. [daisyUI og @tailwindcss/typography](#daisyui-og-tailwindcsstypography)
 
@@ -74,6 +74,11 @@ You can preview the production build with `npm run preview`.
 ### Annet
 - nvm install guide: https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating
 - shadcn-svelte: https://www.shadcn-svelte.com/
+- Runes: https://svelte-5-preview.vercel.app/docs/runes
+- Svelte 5 Preview editor: https://svelte-5-preview.vercel.app/
+- The Svelte 5 Guide On Runes And Universal Reactivity: https://www.youtube.com/watch?v=tErKyuUTzsM
+- Prismic: Svelte talks spilleliste: https://www.youtube.com/playlist?list=PLUVZjQltoA3yEj6bfKjicBOwCaJJU10rw
+- Svelte (4) navbar: https://svelte.dev/repl/03f0be0c4dc54eb4af5a168f644f5c31?version=3.19.1
 
 ---
 
@@ -310,7 +315,7 @@ For å oppnå dette må opprette noen filer
 - Slett `src/routes/+page.svelte`
 - Opprett mappen `src/routes/[lang]`
 
-    - [] er convensjon for slug. `lang` blir lagt på @page
+  - [] er convensjon for slug. `lang` blir lagt på @page
 
 - Opprett filen `src/routes/[lang]/+page.svelte`
   ```sveltehtml

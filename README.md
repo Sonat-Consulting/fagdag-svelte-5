@@ -74,6 +74,11 @@ You can preview the production build with `npm run preview`.
 ### Annet
 - nvm install guide: https://github.com/nvm-sh/nvm/blob/master/README.md#installing-and-updating
 - shadcn-svelte: https://www.shadcn-svelte.com/
+- Runes: https://svelte-5-preview.vercel.app/docs/runes
+- Svelte 5 Preview editor: https://svelte-5-preview.vercel.app/
+- The Svelte 5 Guide On Runes And Universal Reactivity: https://www.youtube.com/watch?v=tErKyuUTzsM
+- Prismic: Svelte talks spilleliste: https://www.youtube.com/playlist?list=PLUVZjQltoA3yEj6bfKjicBOwCaJJU10rw
+- Svelte (4) navbar: https://svelte.dev/repl/03f0be0c4dc54eb4af5a168f644f5c31?version=3.19.1
 
 ---
 

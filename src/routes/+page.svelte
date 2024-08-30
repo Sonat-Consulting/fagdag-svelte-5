@@ -1,4 +1,17 @@
-Fin side
+<script lang="ts">
+	const g = 5;
+</script>
+
+<a href="/hund">Til hund</a>
+<h1 class="fin">Fin side {g}</h1>
+
+<style>
+    .fin {
+        background-color: red;
+    }
+</style>
+
+
 <!--<script lang="ts">-->
 <!--	console.log('6: src/+page.svelte');-->
 <!--</script>-->
